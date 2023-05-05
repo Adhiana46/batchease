@@ -52,9 +52,9 @@ func WithWorkers[T any](n int, handleFn HandleFunc[T]) BatcherOption[T] {
 		b.workers = make([]*Worker[T], n)
 
 		for i := 0; i < n; i++ {
-			w, err := NewWorker[T](
+			w, err := NewWorker(
 				strconv.Itoa(i),
-				WorkerWithHandleFn[T](handleFn),
+				WorkerWithHandleFn(handleFn),
 			)
 			if err != nil {
 				return err
